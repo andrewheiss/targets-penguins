@@ -1,0 +1,31 @@
+---
+title: "Penguin report"
+output: html_document
+date: "2022-08-25"
+---
+
+```{r packages-data, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(modelsummary)
+library(targets)
+
+tar_load(clean_penguins)
+tar_load(penguin_model_1)
+tar_load(penguin_model_2)
+```
+
+
+# Look at data
+
+```{r}
+ggplot(clean_penguins, aes(x = bill_length_mm, y = body_mass_g, color = species)) +
+  geom_point()
+```
+
+# Look at models
+
+Here is model 1
+
+```{r}
+modelsummary(list(penguin_model_1, penguin_model_2))
+```
